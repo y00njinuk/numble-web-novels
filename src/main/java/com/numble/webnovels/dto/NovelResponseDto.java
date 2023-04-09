@@ -3,9 +3,11 @@ package com.numble.webnovels.dto;
 import com.numble.webnovels.domain.Novel;
 import com.numble.webnovels.domain.NovelItem;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 @AllArgsConstructor
 public class NovelResponseDto {
     private Long id;
