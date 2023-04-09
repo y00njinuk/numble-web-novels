@@ -28,10 +28,11 @@ public class Novel extends BaseEntity {
     @Column(nullable = false)
     private int clickCount = 0;
 
-    @OneToMany(fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "novel",
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JoinColumn(name = "novel_id")
+    @ToString.Exclude
     private List<NovelItem> novelItemList = new ArrayList<>();
 
     /**

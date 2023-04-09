@@ -1,5 +1,6 @@
 package com.numble.webnovels.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,11 +25,18 @@ public class NovelItem extends BaseEntity {
     private int currentPage;
 
     @Column(nullable = false)
-    private boolean isFree;
+    private Boolean isFree;
 
     @Column(nullable = false)
     private int fileSize;
 
     @Column(nullable = false)
     private String filePath;
+
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "novel_id")
+    @ToString.Exclude
+    @JsonIgnore
+    private Novel novel;
 }
