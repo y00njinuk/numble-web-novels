@@ -1,0 +1,58 @@
+# Reference
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+name: numble-web-novels Workflow
+
+# master 브랜치에 push 이벤트 발생 시 Workflow 실행
+on:
+  push:
+    branches: [ "master" ]
+  # Workflow 문제 발생 시 수동 실행 가능하게 하도록 workflow_dispatch 추가
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+
+# 현재는 Repository 관련 모든 권한을 Workflow에 허용
+# TODO. 별도로 GITHUB_TOKEN 권한 관리가 필요하면 수정
+permissions: {}
+
+env:
+  # build
+  MYSQL_PORT: 3305
+  MYSQL_DATABASE: 'WEB_NOVELS'
+  MYSQL_USER: 'test'
+  MYSQL_PASSWORD: 'test'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name : STEP1) Source Checkout
+        uses: actions/checkout@v3
+
+      - name: STEP2) Setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      # Custom Action Usage - https://github.com/samin/mysql-action
+      - name: STEP3) Start MySQL
+        uses: samin/mysql-action@v1.3
+        with:
+          host port: $MYSQL_PORT
+          container port: $MYSQL_PORT
+          mysql database: $MYSQL_DATABASE
+          mysql user: $MYSQL_USER
+          mysql password: $MYSQL_PASSWORD
+
+      - name: STEP4) Maven Build and Test
+        run: mvn --batch-mode --update-snapshots package
