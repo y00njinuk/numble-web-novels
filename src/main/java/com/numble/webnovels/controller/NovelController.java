@@ -1,6 +1,7 @@
 package com.numble.webnovels.controller;
 
 import com.numble.webnovels.dto.NovelDetailResponseDto;
+import com.numble.webnovels.dto.NovelItemResponseDto;
 import com.numble.webnovels.dto.NovelResponseDto;
 import com.numble.webnovels.service.NovelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,15 @@ public class NovelController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(novelResponseDto);
+    }
+
+    @GetMapping("/search/{novelId}/{novelItemId}")
+    public ResponseEntity<NovelItemResponseDto> getNovelItemById(@PathVariable Long novelId,
+                                                                 @PathVariable Long novelItemId) {
+        NovelItemResponseDto novelItemResponseDto = novelService.getNovelItem(novelId, novelItemId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(novelItemResponseDto);
     }
 }
