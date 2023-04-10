@@ -1,7 +1,9 @@
 /**
  * Spring Boot Integration Test
  *
- * Reference: spring.io/guides/gs/testing-web/#:~:text=Another%20useful%20approach,starting%20the%20server.
+ * Reference
+ * - spring.io/guides/gs/testing-web/#:~:text=Another%20useful%20approach,starting%20the%20server.
+ * - www.baeldung.com/integration-testing-in-spring
  */
 
 package com.numble.webnovels;
