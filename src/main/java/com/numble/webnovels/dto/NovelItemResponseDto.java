@@ -9,7 +9,6 @@ import lombok.Getter;
 public class NovelItemResponseDto {
     private Long id;
     private int allPages;
-    private int currentPage;
     private Boolean isFree;
     private int fileSize;
     private String filePath;
@@ -17,7 +16,6 @@ public class NovelItemResponseDto {
     public NovelItemResponseDto(NovelItem novelItem) {
         this.id = novelItem.getId();
         this.allPages = novelItem.getAllPages();
-        this.currentPage = novelItem.getCurrentPage();
         this.isFree = novelItem.getIsFree();
         this.fileSize = novelItem.getFileSize();
         this.filePath = novelItem.getFilePath();

@@ -22,9 +22,6 @@ public class NovelItem extends BaseEntity {
     private int allPages;
 
     @Column(nullable = false)
-    private int currentPage;
-
-    @Column(nullable = false)
     private Boolean isFree;
 
     @Column(nullable = false)

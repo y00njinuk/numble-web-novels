@@ -66,14 +66,14 @@ public class NumbleWebNovelsIntegrationTest {
     void givenNovelId_whenFindById_thenReturnNovel() throws Exception {
         Random rndGen = new Random();
 
-        Novel newNovel = new Novel(1L, "Numble Novels", "Nuble Novels", 0, new ArrayList<>());
+        Novel newNovel = new Novel(1L, "Numble Novels", "Nuble Novels", 0,
+                new ArrayList<>());
 
         List<NovelItem> novelItemList = IntStream.iterate(1, i -> i + 1)
                 .limit(rndGen.nextInt(10) + 1)
                 .mapToObj(n -> new NovelItem(
                         new Long(n),
                         rndGen.nextInt(100),
-                        rndGen.nextInt(10),
                         rndGen.nextBoolean(),
                         rndGen.nextInt(1024),
                         "src/main/resources/sample/novel1-" + n,
@@ -101,7 +101,6 @@ public class NumbleWebNovelsIntegrationTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.allPages").value(newNovelItem.getAllPages()))
-                .andExpect(jsonPath("$.currentPage").value(newNovelItem.getCurrentPage()))
                 .andExpect(jsonPath("$.isFree").value(newNovelItem.getIsFree()))
                 .andExpect(jsonPath("$.fileSize").value(newNovelItem.getFileSize()))
                 .andExpect(jsonPath("$.filePath").value(newNovelItem.getFilePath()));
