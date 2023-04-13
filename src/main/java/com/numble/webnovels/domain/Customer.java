@@ -15,7 +15,6 @@ import javax.persistence.*;
 public class Customer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id", unique = true)
     private Long id;
 
     @Column(nullable = false)
