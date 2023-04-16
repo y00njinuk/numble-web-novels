@@ -17,3 +17,8 @@
 ![novel-diagram(1)](https://user-images.githubusercontent.com/71953982/232319170-2cbbc792-4b80-4003-9971-0099890986df.png)
 #### (2) 선호작 보기
 ![novel-diagram(2)](https://user-images.githubusercontent.com/71953982/232319180-626dbfb5-fa4f-405e-9a0e-534d16f1098d.png)
+
+### 4. API Document
+- Overview : [numble-web-novels/blob/master/doc/ascii/overview.adoc](https://github.com/y00njinuk/numble-web-novels/blob/master/doc/ascii/overview.adoc)
+- Definition : [numble-web-novels/blob/master/doc/ascii/definitions.adoc](https://github.com/y00njinuk/numble-web-novels/blob/master/doc/ascii/definitions.adoc)
+- Path : [numble-web-novels/blob/master/doc/ascii/paths.adoc](https://github.com/y00njinuk/numble-web-novels/blob/master/doc/ascii/paths.adoc)
