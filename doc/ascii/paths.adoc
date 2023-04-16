@@ -1,5 +1,5 @@
 == Paths
-=== GET /api/novel/search/best
+=== GET /api/search/best
 ==== Description
 :hardbreaks:
 베스트 소설 작품을 조회한다.
@@ -16,7 +16,7 @@
 
 * NovelController
 
-=== GET /api/novel/search/novelId
+=== GET /api/search/novel
 ==== Description
 :hardbreaks:
 소설 작품을 조회한다.
@@ -25,7 +25,7 @@
 [options="header"]
 |===
 |Type|Name|Description|Required|Schema|Default
-|QueryParameter|소설 고유의 ID 값|Novel Id|false||
+|BodyParameter|소설 고유의 ID 값|Novel Id|true|integer|
 |===
 
 ==== Responses
@@ -40,7 +40,7 @@
 
 * NovelController
 
-=== GET /api/novel/search/novelId/novelItemId
+=== GET /api/search/novelItem
 ==== Description
 :hardbreaks:
 소설 작품(편당)을 조회한다.
@@ -49,8 +49,8 @@
 [options="header"]
 |===
 |Type|Name|Description|Required|Schema|Default
-|QueryParameter|소설 고유의 ID 값|Novel Id|false||
-|QueryParameter|소설(편당) 고유의 ID 값|Novel Item Id|false||
+|BodyParameter|소설 고유의 ID 값|Novel Id|true|integer|
+|BodyParameter|소설(편당) 고유의 ID 값|Novel Item Id|true|integer|
 |===
 
 ==== Responses
@@ -65,7 +65,7 @@
 
 * NovelController
 
-=== GET /api/novel/search/topic
+=== GET /api/search/topic
 ==== Description
 :hardbreaks:
 신작 베스트 소설 작품을 조회한다.

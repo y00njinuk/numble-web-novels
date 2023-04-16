@@ -15,7 +15,7 @@
     "description" : "소설 작품 및 편당 조회/수정/삭제 API"
   } ],
   "paths" : {
-    "/api/novel/search/best" : {
+    "/api/search/best" : {
       "get" : {
         "tags" : [ "NovelController" ],
         "summary" : "",
@@ -37,20 +37,21 @@
         }
       }
     },
-    "/api/novel/search/novelId" : {
+    "/api/search/novel" : {
       "get" : {
         "tags" : [ "NovelController" ],
         "summary" : "",
         "description" : "소설 작품을 조회한다.",
         "operationId" : "getNovelById",
         "parameters" : [ {
+          "in" : "body",
           "name" : "소설 고유의 ID 값",
-          "in" : "query",
           "description" : "Novel Id",
-          "required" : false,
-          "type" : "1",
-          "format" : "int64",
-          "x-example" : "1"
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -65,28 +66,30 @@
         }
       }
     },
-    "/api/novel/search/novelId/novelItemId" : {
+    "/api/search/novelItem" : {
       "get" : {
         "tags" : [ "NovelController" ],
         "summary" : "",
         "description" : "소설 작품(편당)을 조회한다.",
         "operationId" : "getNovelItemById",
         "parameters" : [ {
+          "in" : "body",
           "name" : "소설 고유의 ID 값",
-          "in" : "query",
           "description" : "Novel Id",
-          "required" : false,
-          "type" : "1",
-          "format" : "int64",
-          "x-example" : "1"
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
         }, {
+          "in" : "body",
           "name" : "소설(편당) 고유의 ID 값",
-          "in" : "query",
           "description" : "Novel Item Id",
-          "required" : false,
-          "type" : "1",
-          "format" : "int64",
-          "x-example" : "1"
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
         } ],
         "responses" : {
           "200" : {
@@ -101,7 +104,7 @@
         }
       }
     },
-    "/api/novel/search/topic" : {
+    "/api/search/topic" : {
       "get" : {
         "tags" : [ "NovelController" ],
         "summary" : "",

@@ -33,7 +33,7 @@ Numble Web API Documnet
 # APIs
 
 
-## /api/novel/search/best
+## /api/search/best
 
 
 ### GET
@@ -86,7 +86,7 @@ Numble Web API Documnet
 
 
 
-## /api/novel/search/novelId
+## /api/search/novel
 
 
 ### GET
@@ -121,14 +121,15 @@ Numble Web API Documnet
 
 <tr>
     <th>소설 고유의 ID 값</th>
-    <td>query</td>
-    <td>no</td>
+    <td>body</td>
+    <td>yes</td>
     <td>Novel Id</td>
     <td> - </td>
 
+    <td>
     
-            <td>1 (int64)</td>
     
+    </td>
 
 </tr>
 
@@ -164,7 +165,7 @@ Numble Web API Documnet
 
 
 
-## /api/novel/search/novelId/novelItemId
+## /api/search/novelItem
 
 
 ### GET
@@ -199,27 +200,29 @@ Numble Web API Documnet
 
 <tr>
     <th>소설 고유의 ID 값</th>
-    <td>query</td>
-    <td>no</td>
+    <td>body</td>
+    <td>yes</td>
     <td>Novel Id</td>
     <td> - </td>
 
+    <td>
     
-            <td>1 (int64)</td>
     
+    </td>
 
 </tr>
 
 <tr>
     <th>소설(편당) 고유의 ID 값</th>
-    <td>query</td>
-    <td>no</td>
+    <td>body</td>
+    <td>yes</td>
     <td>Novel Item Id</td>
     <td> - </td>
 
+    <td>
     
-            <td>1 (int64)</td>
     
+    </td>
 
 </tr>
 
@@ -255,7 +258,7 @@ Numble Web API Documnet
 
 
 
-## /api/novel/search/topic
+## /api/search/topic
 
 
 ### GET
