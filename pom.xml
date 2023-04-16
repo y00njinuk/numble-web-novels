@@ -15,6 +15,8 @@
     <description>numble-web-novels</description>
     <properties>
         <java.version>11</java.version>
+        <jetty-version>9.0.7.v20131107</jetty-version>
+        <jersey2-version>2.4.1</jersey2-version>
     </properties>
     <dependencies>
         <dependency>
@@ -76,6 +78,45 @@
             <artifactId>spock-spring</artifactId>
             <version>1.2-groovy-2.4</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-core</artifactId>
+            <scope>compile</scope>
+            <version>1.6.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <version>${jersey2-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>${jersey2-version}</version>
         </dependency>
     </dependencies>
 
@@ -141,6 +182,69 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- create Swagger API Document (JSON) -->
+            <plugin>
+                <groupId>com.github.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <springmvc>false</springmvc>
+                            <locations>com.numble.webnovels</locations>
+                            <info>
+                                <title>Numble Web API Documnet</title>
+                                <version>v1</version>
+                                <description>Numble Web API Documnet</description>
+                                <termsOfService>
+                                    https://github.com/y00njinuk/numble-web-novels
+                                </termsOfService>
+                                <contact>
+                                    <email>jinuknamja@gmail.com</email>
+                                    <name>YoonJinUk</name>
+                                </contact>
+                            </info>
+                            <!-- Support classpath or file absolute path here.
+                            1) classpath e.g: "classpath:/markdown.hbs", "classpath:/templates/hello.html"
+                            2) file e.g: "${basedir}/src/main/resources/markdown.hbs",
+                                "${basedir}/src/main/resources/template/hello.html" -->
+                            <templatePath>${basedir}/templates/strapdown.html.hbs</templatePath>
+                            <outputPath>${basedir}/doc/html/document.html</outputPath>
+                            <swaggerDirectory>doc/swagger-ui</swaggerDirectory>
+                        </apiSource>
+                    </apiSources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- create Swagger API Document (JSON->AsciiDoc) -->
+            <plugin>
+                <groupId>io.github.robwin</groupId>
+                <artifactId>swagger2markup-maven-plugin</artifactId>
+                <version>0.9.3</version>
+                <configuration>
+                    <inputDirectory>${basedir}/doc/swagger-ui</inputDirectory>
+                    <outputDirectory>${basedir}/doc/ascii</outputDirectory>
+                    <markupLanguage>asciidoc</markupLanguage>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>process-swagger</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>
