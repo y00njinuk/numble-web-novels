@@ -10,11 +10,10 @@
 - 포인트 충전
 
 ### 2. 데이터베이스 스키마
-![novel-ERD drawio](https://user-images.githubusercontent.com/71953982/232318800-c02081ea-8cf6-4757-b229-194b5fba90e0.png)
+![novel-erd](https://user-images.githubusercontent.com/71953982/232319160-88d89ef0-7010-40ca-8f22-58b16ed70697.png)
 
 ### 3. 유저플로우
-1. 소장권 충전
-![novel-diagram(1)](https://user-images.githubusercontent.com/71953982/232318866-4fb110ed-6e2c-4995-9d92-bcdab8dce61c.png)
-
-2. 선호작 보기
-![novel-diagram(2)](https://user-images.githubusercontent.com/71953982/232318878-8a96b3a7-2a2f-4f72-a0b2-3e2832573086.png)
+#### (1) 소장권 충전
+![novel-diagram(1)](https://user-images.githubusercontent.com/71953982/232319170-2cbbc792-4b80-4003-9971-0099890986df.png)
+#### (2) 선호작 보기
+![novel-diagram(2)](https://user-images.githubusercontent.com/71953982/232319180-626dbfb5-fa4f-405e-9a0e-534d16f1098d.png)
