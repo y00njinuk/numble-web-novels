@@ -83,7 +83,7 @@ public class NumbleWebNovelsIntegrationTest {
         newNovel.addNovelItem(novelItemList);
         novelRepository.saveAndFlush(newNovel);
 
-        mockMvc.perform(get("/api/novel/search/"+ newNovel.getId()))
+        mockMvc.perform(get("/api/search/novel?novelId="+ newNovel.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").exists())
@@ -96,7 +96,7 @@ public class NumbleWebNovelsIntegrationTest {
 
         NovelItem newNovelItem = novelItemList.get(0);
 
-        mockMvc.perform(get("/api/novel/search/"+ newNovel.getId() + "/" + newNovelItem.getId()))
+        mockMvc.perform(get("/api/search/novelItem?novelId="+ newNovel.getId() + "&novelItemId=" + newNovelItem.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").exists())
