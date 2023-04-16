@@ -1,0 +1,206 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Numble Web API Documnet",
+    "version" : "v1",
+    "title" : "Numble Web API Documnet",
+    "termsOfService" : "https://github.com/y00njinuk/numble-web-novels",
+    "contact" : {
+      "name" : "YoonJinUk",
+      "email" : "jinuknamja@gmail.com"
+    }
+  },
+  "tags" : [ {
+    "name" : "NovelController",
+    "description" : "소설 작품 및 편당 조회/수정/삭제 API"
+  } ],
+  "paths" : {
+    "/api/novel/search/best" : {
+      "get" : {
+        "tags" : [ "NovelController" ],
+        "summary" : "",
+        "description" : "베스트 소설 작품을 조회한다.",
+        "operationId" : "getAllBestNovels",
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/NovelResponseDto"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/novel/search/novelId" : {
+      "get" : {
+        "tags" : [ "NovelController" ],
+        "summary" : "",
+        "description" : "소설 작품을 조회한다.",
+        "operationId" : "getNovelById",
+        "parameters" : [ {
+          "name" : "소설 고유의 ID 값",
+          "in" : "query",
+          "description" : "Novel Id",
+          "required" : false,
+          "type" : "1",
+          "format" : "int64",
+          "x-example" : "1"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved",
+            "schema" : {
+              "$ref" : "#/definitions/NovelDetailResponseDto"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/novel/search/novelId/novelItemId" : {
+      "get" : {
+        "tags" : [ "NovelController" ],
+        "summary" : "",
+        "description" : "소설 작품(편당)을 조회한다.",
+        "operationId" : "getNovelItemById",
+        "parameters" : [ {
+          "name" : "소설 고유의 ID 값",
+          "in" : "query",
+          "description" : "Novel Id",
+          "required" : false,
+          "type" : "1",
+          "format" : "int64",
+          "x-example" : "1"
+        }, {
+          "name" : "소설(편당) 고유의 ID 값",
+          "in" : "query",
+          "description" : "Novel Item Id",
+          "required" : false,
+          "type" : "1",
+          "format" : "int64",
+          "x-example" : "1"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved",
+            "schema" : {
+              "$ref" : "#/definitions/NovelDetailResponseDto"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/novel/search/topic" : {
+      "get" : {
+        "tags" : [ "NovelController" ],
+        "summary" : "",
+        "description" : "신작 베스트 소설 작품을 조회한다.",
+        "operationId" : "getNewBestNovel",
+        "responses" : {
+          "200" : {
+            "description" : "Successfully retrieved",
+            "schema" : {
+              "$ref" : "#/definitions/NovelResponseDto"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "NovelDetailResponseDto" : {
+      "type" : "object",
+      "required" : [ "clickCount", "comment", "id", "title" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : "1"
+        },
+        "title" : {
+          "type" : "string",
+          "example" : "Numble Novels"
+        },
+        "comment" : {
+          "type" : "string",
+          "example" : "Numble에서 제작한 웹 소설"
+        },
+        "clickCount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : "102"
+        },
+        "novelItemList" : {
+          "type" : "array",
+          "example" : "'['{'id': '1','allPages': '168', 'isFree': 'true', 'fileSize': '2048', 'filePath': 'src/main/resources/sample/novel1-1'}']",
+          "items" : {
+            "$ref" : "#/definitions/NovelItem"
+          }
+        }
+      }
+    },
+    "NovelItem" : {
+      "type" : "object",
+      "required" : [ "allPages", "filePath", "fileSize", "id", "isFree" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : "1"
+        },
+        "allPages" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : "168"
+        },
+        "isFree" : {
+          "type" : "boolean",
+          "example" : "true",
+          "default" : false
+        },
+        "fileSize" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : "2048"
+        },
+        "filePath" : {
+          "type" : "string",
+          "example" : "src/main/resources/sample/novel1-1"
+        }
+      }
+    },
+    "NovelResponseDto" : {
+      "type" : "object",
+      "required" : [ "comment", "id", "title" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : "1"
+        },
+        "title" : {
+          "type" : "string",
+          "example" : "Numble Novels"
+        },
+        "comment" : {
+          "type" : "string",
+          "example" : "Numble에서 제작한 웹 소설"
+        }
+      }
+    }
+  }
+}

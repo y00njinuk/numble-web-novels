@@ -1,0 +1,19 @@
+= Numble Web API Documnet
+
+== Overview
+Numble Web API Documnet
+
+=== Version information
+Version: v1
+
+=== Contact information
+Contact: YoonJinUk
+Contact Email: jinuknamja@gmail.com
+
+Terms of service: https://github.com/y00njinuk/numble-web-novels
+
+=== Tags
+
+* NovelController: 소설 작품 및 편당 조회/수정/삭제 API
+
+

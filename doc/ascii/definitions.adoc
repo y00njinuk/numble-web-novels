@@ -1,0 +1,32 @@
+== Definitions
+=== NovelDetailResponseDto
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|id||true|integer (int64)|
+|title||true|string|
+|comment||true|string|
+|clickCount||true|integer (int32)|
+|novelItemList||false|<<NovelItem>> array|
+|===
+
+=== NovelItem
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|id||true|integer (int64)|
+|allPages||true|integer (int32)|
+|isFree||true|boolean|false
+|fileSize||true|integer (int32)|
+|filePath||true|string|
+|===
+
+=== NovelResponseDto
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|id||true|integer (int64)|
+|title||true|string|
+|comment||true|string|
+|===
+

@@ -1,0 +1,84 @@
+== Paths
+=== GET /api/novel/search/best
+==== Description
+:hardbreaks:
+베스트 소설 작품을 조회한다.
+
+==== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|Successfully retrieved|<<NovelResponseDto>> array
+|500|Internal Server Error|No Content
+|===
+
+==== Tags
+
+* NovelController
+
+=== GET /api/novel/search/novelId
+==== Description
+:hardbreaks:
+소설 작품을 조회한다.
+
+==== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|QueryParameter|소설 고유의 ID 값|Novel Id|false||
+|===
+
+==== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|Successfully retrieved|<<NovelDetailResponseDto>>
+|500|Internal Server Error|No Content
+|===
+
+==== Tags
+
+* NovelController
+
+=== GET /api/novel/search/novelId/novelItemId
+==== Description
+:hardbreaks:
+소설 작품(편당)을 조회한다.
+
+==== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|QueryParameter|소설 고유의 ID 값|Novel Id|false||
+|QueryParameter|소설(편당) 고유의 ID 값|Novel Item Id|false||
+|===
+
+==== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|Successfully retrieved|<<NovelDetailResponseDto>>
+|500|Internal Server Error|No Content
+|===
+
+==== Tags
+
+* NovelController
+
+=== GET /api/novel/search/topic
+==== Description
+:hardbreaks:
+신작 베스트 소설 작품을 조회한다.
+
+==== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|Successfully retrieved|<<NovelResponseDto>>
+|500|Internal Server Error|No Content
+|===
+
+==== Tags
+
+* NovelController
+
