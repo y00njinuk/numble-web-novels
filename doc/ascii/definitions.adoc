@@ -3,30 +3,30 @@
 [options="header"]
 |===
 |Name|Description|Required|Schema|Default
-|id||true|integer (int64)|
-|title||true|string|
-|comment||true|string|
-|clickCount||true|integer (int32)|
-|novelItemList||false|<<NovelItem>> array|
+|id|소설 키 값|true|integer (int64)|
+|title|소설 제목|true|string|
+|comment|소설 한줄 소개|true|string|
+|clickCount|소설 클릭 수|true|integer (int32)|
+|novelItemList|소설에 해당하는 소설(편당) 목록|false|<<NovelItem>> array|
 |===
 
 === NovelItem
 [options="header"]
 |===
 |Name|Description|Required|Schema|Default
-|id||true|integer (int64)|
-|allPages||true|integer (int32)|
-|isFree||true|boolean|false
-|fileSize||true|integer (int32)|
-|filePath||true|string|
+|id|소설(편당) 키 값|true|integer (int64)|
+|allPages|소설(편당) 전체 페이지|true|integer (int32)|
+|isFree|소설(편당) 무료 여부|true|boolean|false
+|fileSize|소설(편당) 파일 크기|true|integer (int32)|
+|filePath|소설(편당) 파일 경로|true|string|
 |===
 
 === NovelResponseDto
 [options="header"]
 |===
 |Name|Description|Required|Schema|Default
-|id||true|integer (int64)|
-|title||true|string|
-|comment||true|string|
+|id|소설 키 값|true|integer (int64)|
+|title|소설 제목|true|string|
+|comment|소설 한줄 소개|true|string|
 |===
 

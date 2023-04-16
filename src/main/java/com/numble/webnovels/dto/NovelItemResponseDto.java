@@ -8,15 +8,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class NovelItemResponseDto {
-    @ApiModelProperty(notes = "소설(편당) 키 값", example = "1", required = true)
+    @ApiModelProperty(value = "소설(편당) 키 값", example = "1", required = true)
     private Long id;
-    @ApiModelProperty(notes = "소설(편당) 전체 페이지", example = "168", required = true)
+    @ApiModelProperty(value = "소설(편당) 전체 페이지", example = "168", required = true)
     private int allPages;
-    @ApiModelProperty(notes = "소설(편당) 무료 여부", example = "true", required = true)
+    @ApiModelProperty(value = "소설(편당) 무료 여부", example = "true", required = true)
     private Boolean isFree;
-    @ApiModelProperty(notes = "소설(편당) 파일 크기", example = "2048", required = true)
+    @ApiModelProperty(value = "소설(편당) 파일 크기", example = "2048", required = true)
     private int fileSize;
-    @ApiModelProperty(notes = "소설(편당) 파일 경로", example = "src/main/resources/sample/novel1-1", required = true)
+    @ApiModelProperty(value = "소설(편당) 파일 경로", example = "src/main/resources/sample/novel1-1", required = true)
     private String filePath;
 
     public NovelItemResponseDto(NovelItem novelItem) {

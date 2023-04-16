@@ -11,11 +11,11 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class NovelResponseDto {
-    @ApiModelProperty(notes = "소설 키 값", example = "1", required = true)
+    @ApiModelProperty(value = "소설 키 값", example = "1", required = true)
     private Long id;
-    @ApiModelProperty(notes = "소설 제목", example = "Numble Novels", required = true)
+    @ApiModelProperty(value = "소설 제목", example = "Numble Novels", required = true)
     private String title;
-    @ApiModelProperty(notes = "소설 한줄 소개", example = "Numble에서 제작한 웹 소설", required = true)
+    @ApiModelProperty(value = "소설 한줄 소개", example = "Numble에서 제작한 웹 소설", required = true)
     private String comment;
 
     /**

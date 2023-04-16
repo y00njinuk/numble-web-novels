@@ -132,24 +132,29 @@
         "id" : {
           "type" : "integer",
           "format" : "int64",
-          "example" : "1"
+          "example" : "1",
+          "description" : "소설 키 값"
         },
         "title" : {
           "type" : "string",
-          "example" : "Numble Novels"
+          "example" : "Numble Novels",
+          "description" : "소설 제목"
         },
         "comment" : {
           "type" : "string",
-          "example" : "Numble에서 제작한 웹 소설"
+          "example" : "Numble에서 제작한 웹 소설",
+          "description" : "소설 한줄 소개"
         },
         "clickCount" : {
           "type" : "integer",
           "format" : "int32",
-          "example" : "102"
+          "example" : "102",
+          "description" : "소설 클릭 수"
         },
         "novelItemList" : {
           "type" : "array",
           "example" : "'['{'id': '1','allPages': '168', 'isFree': 'true', 'fileSize': '2048', 'filePath': 'src/main/resources/sample/novel1-1'}']",
+          "description" : "소설에 해당하는 소설(편당) 목록",
           "items" : {
             "$ref" : "#/definitions/NovelItem"
           }
@@ -163,26 +168,31 @@
         "id" : {
           "type" : "integer",
           "format" : "int64",
-          "example" : "1"
+          "example" : "1",
+          "description" : "소설(편당) 키 값"
         },
         "allPages" : {
           "type" : "integer",
           "format" : "int32",
-          "example" : "168"
+          "example" : "168",
+          "description" : "소설(편당) 전체 페이지"
         },
         "isFree" : {
           "type" : "boolean",
           "example" : "true",
+          "description" : "소설(편당) 무료 여부",
           "default" : false
         },
         "fileSize" : {
           "type" : "integer",
           "format" : "int32",
-          "example" : "2048"
+          "example" : "2048",
+          "description" : "소설(편당) 파일 크기"
         },
         "filePath" : {
           "type" : "string",
-          "example" : "src/main/resources/sample/novel1-1"
+          "example" : "src/main/resources/sample/novel1-1",
+          "description" : "소설(편당) 파일 경로"
         }
       }
     },
@@ -193,15 +203,18 @@
         "id" : {
           "type" : "integer",
           "format" : "int64",
-          "example" : "1"
+          "example" : "1",
+          "description" : "소설 키 값"
         },
         "title" : {
           "type" : "string",
-          "example" : "Numble Novels"
+          "example" : "Numble Novels",
+          "description" : "소설 제목"
         },
         "comment" : {
           "type" : "string",
-          "example" : "Numble에서 제작한 웹 소설"
+          "example" : "Numble에서 제작한 웹 소설",
+          "description" : "소설 한줄 소개"
         }
       }
     }
