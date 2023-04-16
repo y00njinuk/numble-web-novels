@@ -4,18 +4,21 @@ import com.numble.webnovels.dto.NovelDetailResponseDto;
 import com.numble.webnovels.dto.NovelItemResponseDto;
 import com.numble.webnovels.dto.NovelResponseDto;
 import com.numble.webnovels.service.NovelService;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/novel")
+@Path("/api/novel")
+@Api(value = "NovelController", description = "소설 작품 및 편당 조회/수정/삭제 API")
 public class NovelController {
 
     private final NovelService novelService;
@@ -26,6 +29,17 @@ public class NovelController {
     }
 
     @GetMapping("/search/best")
+    @GET
+    @Path(value = "/search/best")
+    @ApiOperation(
+            value="",
+            notes="베스트 소설 작품을 조회한다.",
+            response = NovelResponseDto.class,
+            responseContainer = "List")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<List<NovelResponseDto>> getAllBestNovels() {
         List<NovelResponseDto> novelResponseDtoList = novelService.getAllBestNovels();
 
@@ -37,6 +51,16 @@ public class NovelController {
     }
 
     @GetMapping("/search/topic")
+    @GET
+    @Path(value = "/search/topic")
+    @ApiOperation(
+            value="",
+            notes="신작 베스트 소설 작품을 조회한다.",
+            response = NovelResponseDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
     public ResponseEntity<NovelResponseDto> getNewBestNovel() {
         NovelResponseDto novelResponseDto = novelService.getNewBestNovel();
 
@@ -48,7 +72,18 @@ public class NovelController {
     }
 
     @GetMapping("/search/{novelId}")
-    public ResponseEntity<NovelDetailResponseDto> getNovelById(@PathVariable Long novelId) {
+    @GET
+    @Path(value = "/search/novelId")
+    @ApiOperation(
+            value="",
+            notes="소설 작품을 조회한다.",
+            response = NovelDetailResponseDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    public ResponseEntity<NovelDetailResponseDto> getNovelById(
+            @ApiParam(name = "소설 고유의 ID 값", value = "Novel Id", example = "1") @QueryParam("novelId") Long novelId) {
         NovelDetailResponseDto novelResponseDto = novelService.getNovel(novelId);
 
         // TODO. 첫 번째 소설(편당) 조회를 통해 파일 경로를 찾고 이미지 불러오기
@@ -59,8 +94,19 @@ public class NovelController {
     }
 
     @GetMapping("/search/{novelId}/{novelItemId}")
-    public ResponseEntity<NovelItemResponseDto> getNovelItemById(@PathVariable Long novelId,
-                                                                 @PathVariable Long novelItemId) {
+    @GET
+    @Path(value = "/search/novelId/novelItemId")
+    @ApiOperation(
+            value="",
+            notes="소설 작품(편당)을 조회한다.",
+            response = NovelDetailResponseDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    public ResponseEntity<NovelItemResponseDto> getNovelItemById(
+            @ApiParam(name = "소설 고유의 ID 값", value = "Novel Id", example = "1") @QueryParam("novelId") Long novelId,
+            @ApiParam(name = "소설(편당) 고유의 ID 값", value = "Novel Item Id", example = "1") @QueryParam("novelItemId") Long novelItemId) {
         NovelItemResponseDto novelItemResponseDto = novelService.getNovelItem(novelId, novelItemId);
 
         return ResponseEntity
