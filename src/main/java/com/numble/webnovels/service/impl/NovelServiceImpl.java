@@ -1,14 +1,19 @@
 package com.numble.webnovels.service.impl;
 
+import com.numble.webnovels.domain.Customer;
+import com.numble.webnovels.domain.Prefer;
+import com.numble.webnovels.domain.key.CustomerNovelId;
 import com.numble.webnovels.dto.NovelDetailResponseDto;
 import com.numble.webnovels.dto.NovelItemResponseDto;
 import com.numble.webnovels.dto.NovelResponseDto;
 import com.numble.webnovels.repository.NovelItemQueryRepository;
 import com.numble.webnovels.repository.NovelQueryRepository;
+import com.numble.webnovels.repository.PreferQueryRepository;
 import com.numble.webnovels.service.NovelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,11 +25,15 @@ public class NovelServiceImpl implements NovelService {
 
     private final NovelItemQueryRepository novelItemQueryRepository;
 
+    private final PreferQueryRepository preferQueryRepository;
+
     @Autowired
     public NovelServiceImpl(NovelQueryRepository novelQueryRepository,
-                            NovelItemQueryRepository novelItemQueryRepository) {
+                            NovelItemQueryRepository novelItemQueryRepository,
+                            PreferQueryRepository preferQueryRepository) {
         this.novelQueryRepository = novelQueryRepository;
         this.novelItemQueryRepository = novelItemQueryRepository;
+        this.preferQueryRepository = preferQueryRepository;
     }
 
     /**
@@ -78,6 +87,24 @@ public class NovelServiceImpl implements NovelService {
                 .stream()
                 .filter(Objects::nonNull)
                 .map(NovelResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 사용자의 소설 선호작 조회 서비스
+     *
+     * @return 소설 응답 객체 리스트
+     */
+    @Override
+    public List<NovelDetailResponseDto> getPreferedNovels(Customer customer) {
+        return preferQueryRepository.findByCustomer(customer)
+                .orElseThrow(RuntimeException::new)
+                .stream()
+                .filter(Prefer::getIsPrefer)
+                .map(n -> novelQueryRepository
+                        .findById(n.getNovel().getId())
+                        .orElseThrow(RuntimeException::new))
+                .map(NovelDetailResponseDto::new)
                 .collect(Collectors.toList());
     }
 }

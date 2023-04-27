@@ -1,5 +1,6 @@
 package com.numble.webnovels.service;
 
+import com.numble.webnovels.domain.Customer;
 import com.numble.webnovels.dto.NovelDetailResponseDto;
 import com.numble.webnovels.dto.NovelItemResponseDto;
 import com.numble.webnovels.dto.NovelResponseDto;
@@ -11,4 +12,5 @@ public interface NovelService {
     NovelItemResponseDto getNovelItem(Long novelId, Long novelItemId);
     NovelResponseDto getNewBestNovel();
     List<NovelResponseDto> getAllBestNovels();
+    List<NovelDetailResponseDto> getPreferedNovels(Customer customer);
 }
